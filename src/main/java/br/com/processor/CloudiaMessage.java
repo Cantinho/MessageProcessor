@@ -5,6 +5,9 @@ package br.com.processor;
  */
 public class CloudiaMessage implements IMessage {
 
+    public static final String OK = "01";
+    public static final String ERROR = "02";
+
     private String header;
     private String packetSize;
     private String sequence;
