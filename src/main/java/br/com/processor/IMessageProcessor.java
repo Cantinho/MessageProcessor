@@ -7,6 +7,6 @@ public interface IMessageProcessor {
 
     IMessage processMessage(final String message);
 
-    String synthMessage(final String header, final String command, final String data);
+    String synthMessage(IMessage message);
 
 }

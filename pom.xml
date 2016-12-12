@@ -8,5 +8,22 @@
     <artifactId>br.com.processor</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <packaging>jar</packaging>
+
+    <name>MessageProcessor</name>
+    <description>MessageProcessor</description>
+
+    <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+            <archive>
+                <manifest>
+                    <addClasspath>true</addClasspath>
+                    <classpathPrefix>lib/</classpathPrefix>
+                </manifest>
+            </archive>
+        </configuration>
+    </plugin>
 
 </project>

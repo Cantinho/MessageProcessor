@@ -5,7 +5,7 @@ package br.com.processor;
  */
 public class MessageProcessor implements IMessageProcessor {
 
-    public synchronized Message processMessage(final String message){
+    public synchronized IMessage processMessage(final String message){
         int messageLength = message.length();
         String header = message.substring(0, 2);
         String packetSize = message.substring(2, 4);
@@ -14,11 +14,11 @@ public class MessageProcessor implements IMessageProcessor {
         String data = message.substring(8, messageLength - 2);
         String checksum = message.substring(messageLength - 2, messageLength);
 
-        return new Message(messageLength, header, packetSize, sequence, command, data, checksum);
+        return new CloudiaMessage(header, packetSize, sequence, command, data, checksum);
     }
 
-    public synchronized String synthMessage(String header, String command, String data) {
-        return null;
+    public synchronized String synthMessage(final IMessage message) {
+        return message.getMessage();
     }
 
 }

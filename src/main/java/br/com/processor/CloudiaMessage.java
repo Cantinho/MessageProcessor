@@ -3,9 +3,8 @@ package br.com.processor;
 /**
  * Created by jordao on 12/12/16.
  */
-public class Message implements IMessage {
+public class CloudiaMessage implements IMessage {
 
-    private int messageLength;
     private String header;
     private String packetSize;
     private String sequence;
@@ -13,10 +12,13 @@ public class Message implements IMessage {
     private String data;
     private String checksum;
 
-    public Message() {}
+    public CloudiaMessage() {}
 
-    public Message(int messageLength, String header, String packetSize, String sequence, String command, String data, String checksum) {
-        this.messageLength = messageLength;
+    public CloudiaMessage(String header, String sequence, String command, String data, String checksum) {
+        this(header, calculatePacketSize(data) , sequence, command, data, checksum);
+    }
+
+    public CloudiaMessage(String header, String packetSize, String sequence, String command, String data, String checksum) {
         this.header = header;
         this.packetSize = packetSize;
         this.sequence = sequence;
@@ -25,12 +27,8 @@ public class Message implements IMessage {
         this.checksum = checksum;
     }
 
-    public int getMessageLength() {
-        return messageLength;
-    }
-
-    public void setMessageLength(int messageLength) {
-        this.messageLength = messageLength;
+    private synchronized static String calculatePacketSize(final String data) {
+        return Byte.toString((byte) (5 + (data.length() == 0 ? 0 : data.length()/2)));
     }
 
     public String getHeader() {
@@ -83,11 +81,11 @@ public class Message implements IMessage {
 
     public String getMessage() {
         StringBuilder strBuilder = new StringBuilder();
-        strBuilder.append(header + ";");
-        strBuilder.append(packetSize + ";");
-        strBuilder.append(sequence + ";");
-        strBuilder.append(command + ";");
-        strBuilder.append(data + ";");
+        strBuilder.append(header);
+        strBuilder.append(packetSize);
+        strBuilder.append(sequence);
+        strBuilder.append(command);
+        strBuilder.append(data);
         strBuilder.append(checksum);
         return strBuilder.toString();
     }
