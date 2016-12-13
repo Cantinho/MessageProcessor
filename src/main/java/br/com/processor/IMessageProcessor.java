@@ -9,4 +9,6 @@ public interface IMessageProcessor {
 
     String synthMessage(IMessage message);
 
+    String getStatusMessage(final String message, final boolean statusCode);
+
 }

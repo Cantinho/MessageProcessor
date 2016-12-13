@@ -5,8 +5,14 @@ package br.com.processor;
  */
 public class CloudiaMessage implements IMessage {
 
+    public static final String CONNECT = "43";
+    public static final String STATUS = "58";
+    public static final String LOCK = "4E";
+    public static final String UNLOCK = "4F";
     public static final String OK = "01";
     public static final String ERROR = "02";
+    public static final String CONNECT_OK = "01";
+    public static final String CONNECT_ERROR = "02";
 
     private String header;
     private String packetSize;
@@ -31,7 +37,7 @@ public class CloudiaMessage implements IMessage {
     }
 
     private synchronized static String calculatePacketSize(final String data) {
-        return Byte.toString((byte) (5 + (data.length() == 0 ? 0 : data.length()/2)));
+        return String.format("%02d", (byte) (5 + (data.length() == 0 ? 0 : data.length()/2)));
     }
 
     public String getHeader() {
@@ -80,6 +86,12 @@ public class CloudiaMessage implements IMessage {
 
     public void setData(String data) {
         this.data = data;
+    }
+
+    public void recalculateChecksum() {
+        this.checksum = "FF";
+        //TODO FIX ME - RECALCULATE CHECKSUM CORRECTLY
+        // use this String.format("%02d",
     }
 
     public String getMessage() {
