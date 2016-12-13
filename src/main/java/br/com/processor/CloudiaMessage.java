@@ -37,7 +37,7 @@ public class CloudiaMessage implements IMessage {
     }
 
     private synchronized static String calculatePacketSize(final String data) {
-        return Byte.toString((byte) (5 + (data.length() == 0 ? 0 : data.length()/2)));
+        return String.format("%02d", (byte) (5 + (data.length() == 0 ? 0 : data.length()/2)));
     }
 
     public String getHeader() {
@@ -91,6 +91,7 @@ public class CloudiaMessage implements IMessage {
     public void recalculateChecksum() {
         this.checksum = "FF";
         //TODO FIX ME - RECALCULATE CHECKSUM CORRECTLY
+        // use this String.format("%02d",
     }
 
     public String getMessage() {

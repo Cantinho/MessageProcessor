@@ -6,6 +6,7 @@ package br.com.processor;
 public class CloudiaMessageProcessor implements IMessageProcessor {
 
     public synchronized IMessage processMessage(final String message){
+        System.out.println("Cloudia Message Processor - processMessage:" + message);
         int messageLength = message.length();
         String header = message.substring(0, 2);
         String packetSize = message.substring(2, 4);
