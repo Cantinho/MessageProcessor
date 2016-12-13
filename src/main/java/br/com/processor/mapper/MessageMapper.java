@@ -1,5 +1,7 @@
 package br.com.processor.mapper;
 
+import com.google.gson.Gson;
+
 import java.util.List;
 
 /**
@@ -41,5 +43,9 @@ public class MessageMapper {
 
     public void setMsgs(List<String> msgs) {
         this.msgs = msgs;
+    }
+
+    public String toJson(){
+        return new Gson().toJson(this);
     }
 }
