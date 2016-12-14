@@ -93,7 +93,7 @@ public class CloudiaMessage implements IMessage {
         this.checksum = "FF";
         //TODO FIX ME - RECALCULATE CHECKSUM CORRECTLY
         final String message = getMessage().substring(0, getMessage().length() - 2);
-        this.checksum = String.format("%02X", (byte)(checksum(hexStringToByteArray(message), 0)));
+        this.checksum = String.format("%02X", (byte) (checksum(hexStringToByteArray(message), 0)));
     }
 
     private static byte[] hexStringToByteArray(String s) {
