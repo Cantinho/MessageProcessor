@@ -6,6 +6,7 @@ package br.com.processor;
 public class CloudiaMessage implements IMessage {
 
     public static final String CONNECT = "43";
+    public static final String DISCONNECT = "44";
     public static final String STATUS = "58";
     public static final String LOCK = "4E";
     public static final String UNLOCK = "4F";
@@ -91,7 +92,38 @@ public class CloudiaMessage implements IMessage {
     public void recalculateChecksum() {
         this.checksum = "FF";
         //TODO FIX ME - RECALCULATE CHECKSUM CORRECTLY
-        // use this String.format("%02d",
+        final String message = getMessage().substring(0, getMessage().length() - 2);
+        this.checksum = String.format("%02d", checksum(hexStringToByteArray(message), 0));
+    }
+
+    private static byte[] hexStringToByteArray(String s) {
+        int len = s.length();
+        byte[] data = new byte[len / 2];
+        for (int i = 0; i < len; i += 2) {
+            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+                    + Character.digit(s.charAt(i+1), 16));
+        }
+        return data;
+    }
+
+    public synchronized static byte checksum(byte[] byteArray, int method) {
+        if(method == 1) {
+            //ADDITION
+            byte checksum = 0;
+            for(int i = 0; i < byteArray.length; i++)
+            {
+                checksum += byteArray[i];
+            }
+            return checksum;
+        } else {
+            //XORING
+            byte xorChecksum = 0;
+            for(int i = 0; i < byteArray.length-1; i++)
+            {
+                xorChecksum ^= byteArray[i];
+            }
+            return xorChecksum;
+        }
     }
 
     public String getMessage() {
