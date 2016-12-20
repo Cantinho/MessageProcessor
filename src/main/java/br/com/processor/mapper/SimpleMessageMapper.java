@@ -1,4 +1,8 @@
-package br.com.processor;
+package br.com.processor.mapper;
+
+import com.google.gson.Gson;
+
+import java.util.List;
 
 /**
  * Copyright 2016 Cantinho. All Rights Reserved.
@@ -25,22 +29,45 @@ package br.com.processor;
  * directory of this distribution.
  *
  */
-public class SimpleMessage implements IMessage {
+public class SimpleMessageMapper {
 
-    public static final String HELLO_WORLD_MESSAGE = "HELLO WORLD";
-    public static final String STATUS_MESSAGE = "STATUS";
-    public static final String OK = "OK";
-    public static final String ERROR = "ERROR";
-
+    private int index;
     private String message;
+    private List<String> messages;
 
-    public SimpleMessage() {}
+    public SimpleMessageMapper() {}
 
-    public SimpleMessage(String message) {
+    public SimpleMessageMapper(int index, String message, List<String> messages) {
+        this.index = index;
         this.message = message;
+        this.messages = messages;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
     public String getMessage() {
         return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public List<String> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<String> messages) {
+        this.messages = messages;
+    }
+
+    public String toJson(){
+        return new Gson().toJson(this);
     }
 }
