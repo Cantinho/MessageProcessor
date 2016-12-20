@@ -27,6 +27,7 @@ package br.com.processor;
  */
 public class ComplexMessage implements IMessage {
 
+    public static final String HEADER = "AA";
     public static final String CONNECT = "A0";
     public static final String DISCONNECT = "A1";
     public static final String STATUS = "A2";
