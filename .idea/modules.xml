@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MessageProcessor.iml" filepath="$PROJECT_DIR$/MessageProcessor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/br.com.processor.iml" filepath="$PROJECT_DIR$/br.com.processor.iml" />
     </modules>
   </component>
 </project>

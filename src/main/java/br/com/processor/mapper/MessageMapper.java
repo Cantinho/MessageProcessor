@@ -29,15 +29,15 @@ import java.util.List;
  * directory of this distribution.
  *
  */
-public class SimpleMessageMapper {
+public class MessageMapper {
 
     private int index;
     private String message;
     private List<String> messages;
 
-    public SimpleMessageMapper() {}
+    public MessageMapper() {}
 
-    public SimpleMessageMapper(int index, String message, List<String> messages) {
+    public MessageMapper(int index, String message, List<String> messages) {
         this.index = index;
         this.message = message;
         this.messages = messages;

@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="MessageProcessor" />
+        <module name="br.com.processor" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="MessageProcessor" target="1.5" />
+      <module name="br.com.processor" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>
